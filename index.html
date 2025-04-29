@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial Alexa para Terapeutas - Clínica de Autismo</title>
+
+    <link rel="icon" type="image/png" href="puzzle-favicon.png">
     <style>
         /* Basic Reset */
         * {
@@ -37,10 +39,8 @@
         /* Individual falling symbol style */
         .falling-symbol {
             position: absolute;
-            /* --- MODIFIED: Adjusted size for shapes --- */
             width: 30px;
             height: 30px;
-            /* --- END MODIFICATION --- */
             opacity: 0.7; /* Slightly more transparent */
             animation: fall linear infinite;
         }
@@ -71,15 +71,29 @@
             margin-right: 20px;
         }
 
-         header {
+        header {
             background-color: rgba(0, 123, 255, 0.9); /* Slightly transparent */
             color: #fff;
             padding: 20px;
-            text-align: center;
+            text-align: center; /* Keep for fallback if flex fails */
             border-radius: 8px;
             margin-top: 20px; /* Adjust top margin */
             margin-bottom: 20px;
+            /* --- MODIFIED: Use Flexbox for centering logo and title --- */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* --- END MODIFICATION --- */
         }
+
+        /* ================== NEW: Logo Styling ================== */
+        .header-logo {
+            max-height: 80px; /* Adjust this value to control logo size */
+            max-width: 90%;   /* Prevent logo spilling on small screens */
+            margin-bottom: 15px; /* Space between logo and title */
+        }
+        /* ================== END NEW ================== */
+
 
         header h1 {
             margin: 0;
@@ -167,6 +181,12 @@
                  margin-left: 10px;
                  margin-right: 10px;
              }
+             /* --- NEW: Adjust logo size slightly smaller on mobile --- */
+             .header-logo {
+                max-height: 60px;
+                margin-bottom: 10px;
+             }
+             /* --- END NEW --- */
         }
 
     </style>
@@ -176,6 +196,7 @@
     <div class="symbol-container"></div>
 
     <header>
+        <img src="logo.jpg" alt="Logo da Clínica" class="header-logo">
         <h1>Guia Rápido: Usando a Alexa na Terapia</h1>
     </header>
 
@@ -319,7 +340,7 @@
                 <li><strong>Explore as Skills:</strong> O aplicativo Alexa possui "Skills" (como aplicativos) que adicionam funcionalidades (jogos, histórias, sons específicos). Explore e ative as que forem úteis.</li>
                 <li><strong>Paciência é Chave:</strong> Nem sempre a Alexa entenderá de primeira. Tente reformular ou simplificar o comando.</li>
                 <li><strong>Envolva as Crianças:</strong> Incentive as crianças (conforme apropriado para cada uma) a darem comandos simples à Alexa, promovendo autonomia e comunicação.</li>
-                 <li><strong>Privacidade:</strong> Esteja ciente de que a Alexa ouve após a palavra de ativação. Verifique as configurações de privacidade no aplicativo. O microfone pode ser desativado manualmente no dispositivo Echo.</li>
+                 <li><strong>Privacidade:</strong> Esteja ciente de que a Alexa ouve após a palavra de ativação. Verifique as configurações de privacidade no aplicativo. O microfone pode ser desativado manually no dispositivo Echo.</li>
             </ul>
         </section>
 
@@ -332,53 +353,40 @@
 
     <script>
         const symbolContainer = document.querySelector('.symbol-container');
-        // Rainbow colors (ROYGBIV)
         const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'];
 
-        // --- NEW: SVG functions for different shapes ---
         const svgCircle = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="${color}" stroke="#fff" stroke-width="3"/></svg>`;
-        const svgSquare = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="${color}" stroke="#fff" stroke-width="3" rx="5" ry="5"/></svg>`; // Added slight rounding (rx, ry)
+        const svgSquare = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="${color}" stroke="#fff" stroke-width="3" rx="5" ry="5"/></svg>`;
         const svgTriangle = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,5 95,95 5,95" fill="${color}" stroke="#fff" stroke-width="3"/></svg>`;
 
-        const shapes = [svgCircle, svgSquare, svgTriangle]; // Array of shape functions
-        // --- END NEW ---
-
-        const numberOfSymbols = 70; // Adjust number of symbols
+        const shapes = [svgCircle, svgSquare, svgTriangle];
+        const numberOfSymbols = 70;
 
         for (let i = 0; i < numberOfSymbols; i++) {
             const symbol = document.createElement('div');
-            symbol.classList.add('falling-symbol'); // Use the class name
-
-            // Random horizontal position
+            symbol.classList.add('falling-symbol');
             symbol.style.left = Math.random() * 100 + 'vw';
+            symbol.style.animationDuration = Math.random() * 5 + 6 + 's';
+            symbol.style.animationDelay = Math.random() * 6 + 's';
 
-            // Random animation duration and delay
-            symbol.style.animationDuration = Math.random() * 5 + 6 + 's'; // 6-11 seconds duration
-            symbol.style.animationDelay = Math.random() * 6 + 's'; // 0-6 seconds delay
-
-            // --- MODIFIED: Select random shape and color ---
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            const randomShapeFunction = shapes[Math.floor(Math.random() * shapes.length)]; // Pick random shape function
-            symbol.innerHTML = randomShapeFunction(randomColor); // Generate SVG for the chosen shape with the random color
-            // --- END MODIFICATION ---
+            const randomShapeFunction = shapes[Math.floor(Math.random() * shapes.length)];
+            symbol.innerHTML = randomShapeFunction(randomColor);
 
             symbolContainer.appendChild(symbol);
         }
 
-         // --- NEW: Dynamically update the date in the footer ---
-         const updateDate = () => {
+        const updateDate = () => {
             const dateElement = document.getElementById('current-date');
             if (dateElement) {
                 const now = new Date();
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                // Use 'pt-BR' for Brazilian Portuguese date format
-                dateElement.textContent = `Data atual: ${now.toLocaleDateString('pt-BR', options)}`;
-            }
+                // Get current date based on user location (Brazil/Goiania - UTC-3)
+                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Sao_Paulo' };
+                // Format date in Brazilian Portuguese
+                 dateElement.textContent = `Data atual: ${now.toLocaleDateString('pt-BR', options)}`;
+             }
         };
-        updateDate(); // Call initially
-        // Optional: Update date periodically if needed, though for static page load is enough
-        // setInterval(updateDate, 60000); // Update every minute
-        // --- END NEW ---
+        updateDate();
 
     </script>
 
