@@ -67,7 +67,7 @@
         /* Main content styling */
         header, main, footer {
             position: relative; /* Ensure content is above the animation */
-            z-index: 1;       /* Stacking order */
+            z-index: 1;      /* Stacking order */
             margin-left: 20px; /* Keep original margins */
             margin-right: 20px;
         }
@@ -90,9 +90,7 @@
             max-height: 80px; /* Adjust this value to control logo size */
             max-width: 90%;   /* Prevent logo spilling on small screens */
             margin-bottom: 15px; /* Space between logo and title */
-            /* ================== NEW: Added Border Radius ================== */
             border-radius: 15px; /* Curves the corners */
-            /* ================== END NEW ================== */
         }
 
         header h1 {
@@ -112,12 +110,18 @@
             color: #0056b3;
             border-bottom: 2px solid #eee;
             padding-bottom: 5px;
+            margin-bottom: 15px; /* Added margin for spacing below h2 */
         }
 
         ul {
             list-style: disc;
             margin-left: 20px;
             padding-left: 10px; /* Add some padding */
+        }
+
+        /* Styling for lists within sections, like the new routines list */
+        section ul li {
+            margin-bottom: 8px; /* Space between list items */
         }
 
         code {
@@ -146,13 +150,14 @@
             overflow-wrap: break-word;
         }
 
-         .warning {
+        .warning {
             background-color: #fff3cd;
             color: #856404;
             padding: 10px;
             border: 1px solid #ffeeba;
             border-radius: 4px;
             margin-top: 15px;
+            margin-bottom: 15px; /* Added margin for spacing */
         }
 
         footer {
@@ -168,24 +173,23 @@
 
         /* Responsive Adjustments */
         @media (max-width: 600px) {
-             .device-list {
+            .device-list {
                 column-count: 1;
-             }
-             header h1 {
-                 font-size: 1.8em;
-             }
-             section {
-                 padding: 15px;
-             }
-             header, main, footer {
-                 margin-left: 10px;
-                 margin-right: 10px;
-             }
-             .header-logo {
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            section {
+                padding: 15px;
+            }
+            header, main, footer {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .header-logo {
                 max-height: 60px;
                 margin-bottom: 10px;
-                /* The border-radius: 15px; will still apply */
-             }
+            }
         }
 
     </style>
@@ -196,7 +200,6 @@
 
     <header>
         <img src="logo.jpg" alt="Logo da Clínica" class="header-logo">
-
         <h1>Guia Rápido: Usando a Alexa na Terapia</h1>
     </header>
 
@@ -219,7 +222,7 @@
             <p>Para interagir com a Alexa, basta dizer a palavra de ativação (normalmente "Alexa") seguida do seu comando.</p>
             <p><strong>Exemplo:</strong> <code>Alexa, que horas são?</code></p>
             <p>Fale de forma clara e em volume audível. Se a Alexa não entender, tente reformular a frase.</p>
-             <div class="warning">
+            <div class="warning">
                 <strong>Atenção:</strong> A Alexa principal com tela em sua clínica também poderá ser chamada pelo nome "<strong>Alexa Tela</strong>". Vale ressaltar que a Alexa também está configurada no tablet e, portanto, é possível fazer comandos de voz falando para o tablet.
             </div>
         </section>
@@ -253,9 +256,9 @@
                 <li>Nuvenzinha Esquerda</li>
                 <li>Piscina de bolinhas</li>
                 <li>Projetor de Galáxia</li>
-              </ul>
+            </ul>
             
-              <p class="warning"><strong>Observação:</strong> Alguns dispositivos podem aparecer como "Offline" ou "Desligado" na imagem. Certifique-se de que estejam conectados à energia e à rede Wi-Fi para funcionarem com a Alexa.</p>
+            <p class="warning"><strong>Observação:</strong> Alguns dispositivos podem aparecer como "Offline" ou "Desligado" na imagem. Certifique-se de que estejam conectados à energia e à rede Wi-Fi para funcionarem com a Alexa.</p>
             <h3>Exemplos de Comandos para Dispositivos:</h3>
             <ul>
                 <li><code>Alexa, ligar a Lâmpada 1 Direita.</code></li>
@@ -270,6 +273,18 @@
             </ul>
         </section>
 
+        <section id="rotinas-personalizadas">
+            <h2>Nossas Rotinas Personalizadas</h2>
+            <p>Além dos comandos individuais para dispositivos, configuramos algumas rotinas especiais na Alexa para facilitar atividades e criar ambientes temáticos com um único comando:</p>
+            <ul>
+                <li><code>Alexa, apresentar a sala</code>: Esta rotina inicia uma apresentação lúdica sobre todos os dispositivos da sala e suas funções, contando uma história divertida para engajar as crianças.</li>
+                <li><code>Alexa, pão de queijo</code>: Ao acionar esta rotina, a sala é ambientada com luzes na cor roxa e a música "Funk do Pão de Queijo" começa a tocar.</li>
+                <li><code>Alexa, morango</code>: Esta rotina ajusta a iluminação da sala para tons de vermelho e verde, e ativa o aromatizador de ambiente com essência de morango.</li>
+                <li><code>Alexa, incrível Hulk</code>: A sala fica toda verde e o Hulk emite um rugido característico, criando um momento temático e divertido.</li>
+                <li><strong><code>Alexa, apagar a sala inteira</code>: Este comando é muito útil para finalizar as atividades, pois desliga todos os dispositivos inteligentes da sala de uma só vez.</strong></li>
+            </ul>
+            <p>Lembre-se que para as rotinas funcionarem, os respectivos dispositivos precisam estar online e corretamente configurados no aplicativo Alexa.</p>
+        </section>
         <section id="aplicacoes">
             <h2>Ideias para Uso na Terapia</h2>
             <ul>
@@ -296,21 +311,21 @@
                         <li><code>Alexa, ligar o Globo de Luz.</code></li>
                     </ul>
                 </li>
-                 <li><strong>Histórias e Jogos:</strong>
+                <li><strong>Histórias e Jogos:</strong>
                     <ul>
                         <li><code>Alexa, conte uma história infantil.</code></li>
                         <li><code>Alexa, vamos jogar Adivinhe o Animal.</code> (Requer ativação de "Skills" específicas)</li>
                         <li><code>Alexa, soletre a palavra 'casa'.</code></li>
                     </ul>
                 </li>
-                 <li><strong>Informação e Aprendizado:</strong>
+                <li><strong>Informação e Aprendizado:</strong>
                     <ul>
                         <li><code>Alexa, que dia é hoje?</code></li>
                         <li><code>Alexa, como está o tempo lá fora?</code></li>
                         <li><code>Alexa, quantos planetas existem no sistema solar?</code></li>
                     </ul>
                 </li>
-                 <li><strong>Interação Social Guiada:</strong>
+                <li><strong>Interação Social Guiada:</strong>
                     <ul>
                         <li>Incentivar a criança a pedir algo à Alexa: "Peça para a Alexa tocar sua música".</li>
                         <li>Usar a Alexa para dar "bom dia" ou "boa tarde".</li>
@@ -328,21 +343,21 @@
                 <li><strong>Música:</strong> <code>Alexa, tocar música [gênero/artista/nome].</code> | <code>Alexa, parar música.</code> | <code>Alexa, próximo.</code> | <code>Alexa, aumentar/diminuir volume.</code></li>
                 <li><strong>Luzes:</strong> <code>Alexa, ligar/desligar [nome da luz].</code> | <code>Alexa, ligar/desligar todas as luzes.</code> | <code>Alexa, mudar [nome da luz] para [cor].</code> | <code>Alexa, brilho de [nome da luz] para [percentual]%.</code></li>
                 <li><strong>Dispositivos Específicos:</strong> <code>Alexa, ligar/desligar [nome do dispositivo específico, ex: Projetor de Galáxia, Bolha de sabão].</code></li>
-                 <li><strong>Conhecimento:</strong> <code>Alexa, quem foi [nome]?</code> | <code>Alexa, o que é [conceito]?</code> | <code>Alexa, como se soletra [palavra]?</code></li>
-                 <li><strong>Diversão:</strong> <code>Alexa, conte uma piada.</code> | <code>Alexa, cante uma música.</code> | <code>Alexa, imite um [animal].</code></li>
+                <li><strong>Conhecimento:</strong> <code>Alexa, quem foi [nome]?</code> | <code>Alexa, o que é [conceito]?</code> | <code>Alexa, como se soletra [palavra]?</code></li>
+                <li><strong>Diversão:</strong> <code>Alexa, conte uma piada.</code> | <code>Alexa, cante uma música.</code> | <code>Alexa, imite um [animal].</code></li>
             </ul>
         </section>
 
-         <section id="dicas">
+        <section id="dicas">
             <h2>Dicas para o Sucesso</h2>
             <ul>
                 <li><strong>Fale Claramente:</strong> Enuncie bem as palavras, especialmente os nomes dos dispositivos.</li>
                 <li><strong>Use Nomes Exatos:</strong> A Alexa precisa do nome exato como cadastrado no aplicativo (veja a lista acima).</li>
-                <li><strong>Crie Rotinas no App:</strong> Você pode configurar "Rotinas" no aplicativo Alexa para executar várias ações com um único comando (ex: "Alexa, hora de relaxar" pode diminuir as luzes e tocar música calma).</li>
+                <li><strong>Crie Rotinas no App:</strong> Você pode configurar "Rotinas" no aplicativo Alexa para executar várias ações com um único comando (ex: "Alexa, hora de relaxar" pode diminuir as luzes e tocar música calma). Além das que já criamos, você pode adicionar outras!</li>
                 <li><strong>Explore as Skills:</strong> O aplicativo Alexa possui "Skills" (como aplicativos) que adicionam funcionalidades (jogos, histórias, sons específicos). Explore e ative as que forem úteis.</li>
                 <li><strong>Paciência é Chave:</strong> Nem sempre a Alexa entenderá de primeira. Tente reformular ou simplificar o comando.</li>
                 <li><strong>Envolva as Crianças:</strong> Incentive as crianças (conforme apropriado para cada uma) a darem comandos simples à Alexa, promovendo autonomia e comunicação.</li>
-                 <li><strong>Privacidade:</strong> Esteja ciente de que a Alexa ouve após a palavra de ativação. Verifique as configurações de privacidade no aplicativo. O microfone pode ser desativado manualmente no dispositivo Echo.</li>
+                <li><strong>Privacidade:</strong> Esteja ciente de que a Alexa ouve após a palavra de ativação. Verifique as configurações de privacidade no aplicativo. O microfone pode ser desativado manualmente no dispositivo Echo.</li>
             </ul>
         </section>
     </main>
@@ -354,21 +369,21 @@
 
     <script>
         const symbolContainer = document.querySelector('.symbol-container');
-        const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'];
+        const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3']; // Rainbow colors
 
         const svgCircle = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="${color}" stroke="#fff" stroke-width="3"/></svg>`;
         const svgSquare = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="${color}" stroke="#fff" stroke-width="3" rx="5" ry="5"/></svg>`;
         const svgTriangle = (color) => `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,5 95,95 5,95" fill="${color}" stroke="#fff" stroke-width="3"/></svg>`;
 
         const shapes = [svgCircle, svgSquare, svgTriangle];
-        const numberOfSymbols = 70;
+        const numberOfSymbols = 70; // Adjusted for potentially better performance/look
 
         for (let i = 0; i < numberOfSymbols; i++) {
             const symbol = document.createElement('div');
             symbol.classList.add('falling-symbol');
-            symbol.style.left = Math.random() * 100 + 'vw';
-            symbol.style.animationDuration = Math.random() * 5 + 6 + 's';
-            symbol.style.animationDelay = Math.random() * 6 + 's';
+            symbol.style.left = Math.random() * 100 + 'vw'; // Spread across viewport width
+            symbol.style.animationDuration = Math.random() * 5 + 6 + 's'; // Duration between 6s and 11s
+            symbol.style.animationDelay = Math.random() * 6 + 's'; // Delay up to 6s
 
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             const randomShapeFunction = shapes[Math.floor(Math.random() * shapes.length)];
@@ -377,15 +392,17 @@
             symbolContainer.appendChild(symbol);
         }
 
+        // Update date in footer
         const updateDate = () => {
             const dateElement = document.getElementById('current-date');
             if (dateElement) {
                 const now = new Date();
-                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Sao_Paulo' };
-                 dateElement.textContent = `Data atual: ${now.toLocaleDateString('pt-BR', options)}`;
-             }
+                // Formatting for Brazil (pt-BR) and São Paulo timezone
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Sao_Paulo' };
+                dateElement.textContent = `Data atual: ${now.toLocaleDateString('pt-BR', options)}`;
+            }
         };
-        updateDate();
+        updateDate(); // Call the function to set the date
 
     </script>
 
